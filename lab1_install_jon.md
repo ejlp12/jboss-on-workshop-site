@@ -8,6 +8,12 @@
    dari website yang sama. Dengan memilih produk "JBoss ON for EAP"
    
    ![Halaman download Plugin JON for EAP][Halaman download Plugin JON]
+
+   Jadi paling tidak kita memiliki 2 file berikut:
+   
+     - `jon-server-3.3.0.GA.zip`
+     - `jon-plugin-pack-eap-3.3.0.GA.zip`
+   
    
 2. Download juga dokumentasi JON terutama Installation Guide sebagai penuntun dalam Lab instalasi ini. 
    Dokumentasi bisa di-download disini:
@@ -22,42 +28,65 @@
    Di Lab ini kita akan menggunakan:
         * Linux (RHEL v6.5) atau Windows 8, 64bit
         * Database PostgreSQL v9.3.5 (terbaru saat tulisan ini dibuat)
-        * Mesin minimal RAM 2GB
+        * Mesin minimal RAM 2GB, disk 10GB
         * JDK 1.7
         
 4. Install JDK 1.6 atau 1.7 dan set variabel JAVA_HOME dan PATH
 
-   Jika menggunakan Windows, misal kita instal JDK di direktori `C:\Java\jdk1.6.0`
+   Jika menggunakan Windows, misal kita instal JDK di direktori `C:\Java\jdk1.7.0_67` (Windows) atau di 
+   `/usr/java/jdk1.7.0_67` (Linux)
    Set PATH variable pada system agar menggunakan JDK tersebut dengan cara berikut:
    
-    ```
-    setx JAVA_HOME "C:\Java\jdk1.6.0"
-    setx PATH %JAVA_HOME%\bin;%PATH%
-    ```
+   Windows:
+   
+   ```
+   setx JAVA_HOME "C:\Java\jdk1.7.0_67"
+   setx PATH %JAVA_HOME%\bin;%PATH%
+   ```
     
-   Kemudian tes dengan perintah berikut `echo %PATH%`
-   Pastikan direktori C:\Java\jdk1.6.0\bin ada di output hasil perintah diatas. Kemudian pastikan juga dengan 
-   perintah `java -version` anda tidak mendapatkan error tapi menghasilkan output seperti ini:
+   Linux:
     
-    ```
-    java version "1.6.0_65"Java(TM) SE Runtime Environment (build 1.6.0_65-b14-462-11M4609)
-    Java HotSpot(TM) 64-Bit Server VM (build 20.65-b04-462, mixed mode)
-    ```
+   ```bash
+   export JAVA_HOME=/usr/java/jdk1.7.0_67
+   export PATH=$PATH:$JAVA_HOME/bin
+   ```
+    
+   Kemudian tes dengan perintah berikut `echo %PATH%` (Windows) atau `echo $PATH` (Linux)
+   Pastikan direktori `C:\Java\jdk1.7.0_67\bin` atau `/usr/java/jdk1.7.0_67` ada di output hasil perintah diatas. 
+   Kemudian pastikan juga dengan perintah `java -version` anda tidak mendapatkan error tapi menghasilkan output seperti ini:
+    
+   ```
+   java version "1.7.0_67"
+   Java(TM) SE Runtime Environment (build 1.7.0_67-b01)
+   Java HotSpot(TM) 64-Bit Server VM (build 24.65-b04, mixed mode)
+   ```
     
 5. Instal PostgreSQL
+   Download PostgreSQL. Saya menggunakan PostgreSQL versi EnterpriseDB yang saya download dari sini:
+
+      http://www.enterprisedb.com/products-services-training/pgdownload
+
+   Saya menggunakan versi paling baru (saat artikel ini dibuat) yaitu __versi 9.3.5__
+   Untuk Linux yang digunakan adalah file installer dengan nama `postgresql-9.3.5-3-linux-x64.run` sedangkan jika menggunakan
+   Windows filenya adalah `postgresql-9.3.5-3-windows-x64.exe`
+   
    Jalankan dan tes PostgreSQL dengan memikuti tutorial berikut:
 
          http://www.enterprisedb.com/resources-community/tutorials-quickstarts/windows/getting-started-postgres-plus-tutorial-windows
 
-    Ubah password OS dari user postgres dan juga password dari user postgres untuk akses ke database. Dari command prompt 
-    cmd, yang dijalankan oleh user prosgres ketikan perintah berikut
-
-    ```sql	
+   Ubah password OS dari user postgres dan juga password dari user postgres untuk akses ke database. Dari user `root` 
+   ketikan perintah berikut
+    
+    Linux:
+    ```sql
+    su - postgres
     psql
     postgres=# ALTER USER postgres PASSWORD 'password'; ALTER ROLE
     postgres=#
     ```
-    Tambahkan user rhqadmin ke database, jangan ubah passwordnya. Jika anda mengubah passwordnya anda nanti perlu mengubah password di file konfigurasi JON.
+   
+   Tambahkan user rhqadmin ke database, jangan ubah passwordnya. Jika anda mengubah passwordnya, sebelum menjalankan 
+   JON Server, nanti anda perlu mengubah password di file konfigurasi JON (`rhq-server.properties`)
 
     ```sql
     postgres=# CREATE USER rhqadmin PASSWORD 'rhqadmin'; CREATE ROLE 
@@ -71,14 +100,27 @@
     
     Restart PostgreSQL database
 
-    Sekarang kita instal JON, ekstrak file jon-server-3.3.0.GA.zip di sebuah folder misal di `C:\JBoss\`. Jadi 
-    direktori instalasi JON ada di `C:\JBoss\jon-server-3.3.0.GA\`
-    Berikut adalah struktur direktori dari JON:
+   Sekarang kita instal JON, ekstrak file jon-server-3.3.0.GA.zip di sebuah direktori, misal di `C:\JBoss\jon` (Windows) 
+   atau di `/home/jboss/jon` (Linux). Jadi direktori instalasi JON ada di `C:\JBoss\jon-server-3.3.0.GA\` atau di 
+   `/home/jboss/jon/jon-server-3.3.0.GA\`. Berikut adalah struktur direktori dari JON:
     
-    ![Gambar struktur direktori JON]
-
-
-    Masuk ke direktori instalasi tersebut, `<JON_INSTALL_DIR>\bin` kemudian jalankan perintah
+   
+   ```
+    - EULA 
+    - INSTALL_README.txt
+    - LICENSE
+    - UPGRADE_README.txt
+    - alert-scripts/
+    - bin/
+    - etc/
+    - jbossas/
+    - logs/
+    - modules/
+    - plugins/
+    - rhq-storage/
+   ```
+   
+   Masuk ke direktori instalasi tersebut, `<JON_INSTALL_DIR>\bin` kemudian jalankan perintah
 
     ``
     cd bin
