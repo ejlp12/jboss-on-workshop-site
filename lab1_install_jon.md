@@ -1,3 +1,15 @@
+Ini adalah tutorial/workshop untuk menggunakan [JBoss Operations Network (JON)](http://www.redhat.com/en/technologies/jboss-middleware/operations-network) atau [RHQ](http://rhq.jboss.org).
+
+Apa itu JON atau RHQ? 
+
+Setidaknya ini yang dijelaskan diwebsite RHQ:
+
+RHQ adalah solusi Enterprise manajemen untuk aplikasi-aplikasi JBoss middleware, Tomcat, Apache Web Server, dan berbagai aplikasi server-side lainnya. RHQ menyediakan fungsi administrasi, monitoring, peringatan (alerting), pengendalian operasional (operational control) dan konfigurasi dalam pengaturan aplikasi.
+
+Selain itu sebenarnya JON/RHQ juga dapat melakukan monitoring hardware atau OS seperti utilitas penggunaan prosesor (CPU),
+memory (RAM), storage/disk, dan lain-lain. Kita juga dapat membuat plug-in khusus untuk memonitor aplikasi lain.
+
+Kita akan mulai workshop ini dengan instalasi JON/RHQ.
 
 1. Download JBoss Operation Network (JON) dari website [Red Hat product download]. Yang akan kita gunakan pada workshop 
    ini adalah JON versi paling akhir yang ada saat ini (saat artikel ini dibuat) yaitu __versi 3.3__
@@ -18,15 +30,15 @@
 2. Download juga dokumentasi JON terutama Installation Guide sebagai penuntun dalam Lab instalasi ini. 
    Dokumentasi bisa di-download disini:
         
-        https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Operations_Network/
+   https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Operations_Network/
         
 3. Penting untuk dibaca sebelum instalasi adalah kebutuhan dasar dari JON, yaitu supported configuration terutama hardware
    spec, tipe dan versi OS, database, JDK/JRE. Supported configuration, bisa dilihat di link berikut: 
         
-        https://access.redhat.com/articles/112523
+   https://access.redhat.com/articles/112523
    
    Di Lab ini kita akan menggunakan:
-        * Linux (RHEL v6.5) atau Windows 8, 64bit
+        * Linux (RHEL v6.5) atau Windows 8, 64bit. Saya sendiri menggunakan Mac OS X versi 10.9.5
         * Database PostgreSQL v9.3.5 (terbaru saat tulisan ini dibuat)
         * Mesin minimal RAM 2GB, disk 10GB
         * JDK 1.7
@@ -72,7 +84,8 @@
    
    Jalankan dan tes PostgreSQL dengan memikuti tutorial berikut:
 
-         http://www.enterprisedb.com/resources-community/tutorials-quickstarts/windows/getting-started-postgres-plus-tutorial-windows
+      - [Tutorial memulai PostgreSQL di Windows](http://www.enterprisedb.com/resources-community/tutorials-quickstarts/windows/getting-started-postgres-plus-tutorial-windows)
+      - [Tutorial memulai PostgreSQL di Linux](http://sqlrelay.sourceforge.net/sqlrelay/gettingstarted/postgresql.html)
 
    Ubah password OS dari user postgres dan juga password dari user postgres untuk akses ke database. Dari user `root` 
    ketikan perintah berikut
@@ -100,9 +113,9 @@
     
     Restart PostgreSQL database
 
-   Sekarang kita instal JON, ekstrak file jon-server-3.3.0.GA.zip di sebuah direktori, misal di `C:\JBoss\jon` (Windows) 
-   atau di `/home/jboss/jon` (Linux). Jadi direktori instalasi JON ada di `C:\JBoss\jon-server-3.3.0.GA\` atau di 
-   `/home/jboss/jon/jon-server-3.3.0.GA\`. Berikut adalah struktur direktori dari JON:
+6. Sekarang kita instal JON, ekstrak file `jon-server-3.3.0.GA.zip` di sebuah direktori, misal di `C:\JBoss\` (Windows) 
+   atau di `/home/jboss/` (Linux). Jadi direktori instalasi JON ada di `C:\JBoss\jon-server-3.3.0.GA\` atau di 
+   `/home/jboss/jon-server-3.3.0.GA\`. Berikut adalah struktur direktori dari JON:
     
    
    ```
@@ -122,14 +135,24 @@
    
    Masuk ke direktori instalasi tersebut, `<JON_INSTALL_DIR>\bin` kemudian jalankan perintah
 
-    ``
-    cd bin
-    rhqctl.bat install --start
-    ``
-    
-    Perintah tersebut akan melakukan instalasi JON dan setelahnya akan langsung menjalankannya (start). Perlu diingat password yang anda masukan saat ditanya untuk memasukan password. Password tersebut akan kita gunakan untuk mengakses web interface. Perlu diperhatikan juga pada saat ditanya IP address binding, masukan 0.0.0.0 artinya port service dari JON akan di binding ke semua network interfaces.
+   Windows:
+   ```
+   cd bin
+   rhqctl.bat install --start
+   ```
+   
+   Linux:
+   ```
+   cd bin
+   rhqctl install --start
+   ```
+   
+   Perintah tersebut akan melakukan instalasi JON dan setelahnya akan langsung menjalankannya (start). Perlu diingat 
+   password yang anda masukan saat ditanya untuk memasukan password. Password tersebut akan kita gunakan untuk mengakses 
+   web interface. Perlu diperhatikan juga pada saat ditanya IP address binding, masukan `0.0.0.0` artinya port service 
+   dari JON akan di binding ke semua network interfaces.
 
-    Berikut output/input hasil perintah tersebut:
+   Berikut output/input hasil perintah tersebut:
 
     ```	
     15:33:45,768 INFO  [org.jboss.modules] JBoss Modules version 1.3.3.Final-redhat-1
@@ -154,11 +177,11 @@
     15:34:11,992 INFO  [org.rhq.storage.installer.StorageInstaller] Checking perms for ../../../rhq-data/saved_caches
     15:34:11,993 INFO  [org.rhq.storage.installer.StorageInstaller] Checking perms for ../../../rhq-data/commit_log
     15:34:11,993 INFO  [org.rhq.storage.installer.StorageInstaller] Checking perms for ../../../rhq-data/data
-    15:34:11,997 INFO  [org.rhq.cassandra.Deployer] Unzipping storage node to /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA/rhq-storage
-    15:34:12,642 INFO  [org.rhq.cassandra.Deployer] Applying configuration changes to /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA/rhq-storage/conf/cassandra.yaml
-    15:34:12,703 INFO  [org.rhq.cassandra.Deployer] Applying configuration changes to /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA/rhq-storage/conf/log4j-server.properties
-    15:34:12,707 INFO  [org.rhq.cassandra.Deployer] Applying configuration changes to /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA/rhq-storage/conf/cassandra-jvm.properties
-    15:34:12,717 INFO  [org.rhq.cassandra.Deployer] Updating file permissions in /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA/rhq-storage/bin
+    15:34:11,997 INFO  [org.rhq.cassandra.Deployer] Unzipping storage node to /home/jboss/jon-server-3.3.0.GA/rhq-storage
+    15:34:12,642 INFO  [org.rhq.cassandra.Deployer] Applying configuration changes to /home/jboss/jon-server-3.3.0.GA/rhq-storage/conf/cassandra.yaml
+    15:34:12,703 INFO  [org.rhq.cassandra.Deployer] Applying configuration changes to /home/jboss/jon-server-3.3.0.GA/rhq-storage/conf/log4j-server.properties
+    15:34:12,707 INFO  [org.rhq.cassandra.Deployer] Applying configuration changes to /home/jboss/jon-server-3.3.0.GA/rhq-storage/conf/cassandra-jvm.properties
+    15:34:12,717 INFO  [org.rhq.cassandra.Deployer] Updating file permissions in /home/jboss/jon-server-3.3.0.GA/rhq-storage/bin
     15:34:12,734 INFO  [org.rhq.storage.installer.StorageInstaller] Updating rhq-server.properties...
     15:34:12,756 INFO  [org.rhq.storage.installer.StorageInstaller] Installation of the storage node is complete
     15:34:13,099 INFO  [org.rhq.server.control.command.Install] The storage node installer has finished with an exit value of 0
@@ -166,10 +189,11 @@
      INFO 15:34:14,046 JVM vendor/version: Java HotSpot(TM) 64-Bit Server VM/1.6.0_65
      INFO 15:34:14,047 Heap size: 523501568/523501568
     ```
-
-    Perintah tersebut juga akan menjalankan JON Agent, kita bisa lihat dibagian akhir output dari perintah tersebut
-
-
+   Perintah installasi tersebut akan menginstall RHQ Storage, RHQ Server (bebasis JBoss EAP) dan RHQ Agent.
+   Direktori tempat RHQ Agent diinstall adalah di `../rhq-agent`relatif terhadap direktori instalasi RHQ, karena kita
+   direktori RHQ di `/home/jboss/jon-server-3.3.0.GA` jadi direktori RHQ Agent adalah di `/home/jboss/rhq-agent`
+   
+   Berikut output perintah diatas saat installasi RHQ Agent. 
     	
     ```
     15:35:45,672 INFO  [org.rhq.server.control.command.Install] Installing RHQ agent
@@ -179,34 +203,58 @@
     ======================================
     [header-for-install] [echo]
     ===== RHQ AGENT INSTALL =====
-    Installing Agent To: /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0
+    Installing Agent To: /home/jboss/
     Version: 4.12.0.JON330GA
     Build Number: e347f77
-    Jar File: /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA/modules/org/rhq/server-startup/main/deployments/rhq.ear/rhq-downloads/rhq-agent/rhq-enterprise-agent-4.12.0.JON330GA.jar
+    Jar File: /home/jboss/jon-server-3.3.0.GA/modules/org/rhq/server-startup/main/deployments/rhq.ear/rhq-downloads/rhq-agent/rhq-enterprise-agent-4.12.0.JON330GA.jar
     [install] [echo] Extract the agent distro zip from the agent update binary
-    [install] [unjar] Expanding: /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA/modules/org/rhq/server-startup/main/deployments/rhq.ear/rhq-downloads/rhq-agent/rhq-enterprise-agent-4.12.0.JON330GA.jar into /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA
+    [install] [unjar] Expanding: /home/jboss/jon-server-3.3.0.GA/modules/org/rhq/server-startup/main/deployments/rhq.ear/rhq-downloads/rhq-agent/rhq-enterprise-agent-4.12.0.JON330GA.jar into /home/jboss/jon-server-3.3.0.GA
     [install] [echo] Unzip the agent distro into the new installation directory
-    [install] [unzip] Expanding: /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA/rhq-enterprise-agent-4.12.0.JON330GA.zip into /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0
+    [install] [unzip] Expanding: /home/jboss/jon-server-3.3.0.GA/rhq-enterprise-agent-4.12.0.JON330GA.zip into /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0
     [install] [echo] chmod +x on executables under /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/rhq-agent
     [install] [echo] Remove the agent distro zip
-    [install] [delete] Deleting: /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/jon-server-3.3.0.GA/rhq-enterprise-agent-4.12.0.JON330GA.zip
-    [install] [echo] DONE! Agent version 4.12.0.JON330GA (build number=e347f77) has been installed to /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0
+    [install] [delete] Deleting: /home/jboss/jon-server-3.3.0.GA/rhq-enterprise-agent-4.12.0.JON330GA.zip
+    [install] [echo] DONE! Agent version 4.12.0.JON330GA (build number=e347f77) has been installed to /home/jboss/
     15:35:47,423 INFO  [org.rhq.server.control.command.Install] The agent installer finished running with exit value 0
-    15:35:47,424 INFO  [org.rhq.server.control.command.Install] Configuring the RHQ agent with default configuration file: /Users/eariobow/Documents/03_RH_JBOSS_INSTALLER/JON_3.3.0/rhq-agent/conf/agent-configuration.xml
+    15:35:47,424 INFO  [org.rhq.server.control.command.Install] Configuring the RHQ agent with default configuration file: /home/jboss/rhq-agent/conf/agent-configuration.xml
     15:35:47,510 INFO  [org.rhq.server.control.command.Install] Finished configuring the agent
     15:35:47,510 INFO  [org.rhq.server.control.command.Install] Starting RHQ agent...
     Starting RHQ Agent...
     RHQ Agent (pid 1753 ) is ✔running
     15:35:52,801 INFO  [org.rhq.server.control.command.Install] The agent has started up
     ```
-
-    Akses web UI dengan menggunakan browser ke URL berikut: 
     
-      [http://localhost:7080/](http://localhost:7080/)
+7. Sekarang kita coba cek semua status komponen RHQ (Storage, Server dan Agent) dengan perintah `rhqctl status` (Linux) dari
+   direktori `bin/` di sebuah shell prompt/Terminal lain. Hasil perintah tersebut seharusnya terlihat seperti ini:
+
+   ```
+   21:58:43,290 INFO  [org.jboss.modules] JBoss Modules version 1.3.3.Final-redhat-1
+   RHQ Storage Node               (pid 2003   ) is ✔running
+   RHQ Server                     (pid 2061   ) is ✔running
+   JBossAS Java VM child process  (pid 2158   ) is ✔running
+   RHQ Agent                      (pid 2251   ) is ✔running
+   ```
+
+8. RHQ Server akan menjalankan JBoss EAP yang menjalankan Web UI. Akses web UI dengan menggunakan browser ke URL berikut: 
+    
+   [http://localhost:7080/](http://localhost:7080/)
     
     Masuk dengan user `rhqadmin` dan password sesuai yang anda masukan saat instalasi
 
-        ![Halaman Login JON Web UI](http://4.bp.blogspot.com/-kjSazqOR5jk/VIgIxDG87ZI/AAAAAAAADQw/jUwfpJDI30o/s1600/Snap%2B2014-12-10%2Bat%2B15.47.25.png)
+   ![Halaman Login JON Web UI](http://4.bp.blogspot.com/-kjSazqOR5jk/VIgIxDG87ZI/AAAAAAAADQw/jUwfpJDI30o/s1600/Snap%2B2014-12-10%2Bat%2B15.47.25.png)
+
+9. Sekarang kita coba matikan semua komponen RHQ  dengan perintah berikut `rhqctl stop` (Linux)
+   Kemudian kita lihat status lagi dengan perintah `rhqctl status` (Linux). Jika semua komponen RHQ sudah mati, hasil
+   perintah tersebut seharusnya seperti ini:
+
+   ```
+   14:15:19,455 INFO  [org.jboss.modules] JBoss Modules version 1.3.3.Final-redhat-1
+   RHQ Storage Node               (no pid file) is ✘down
+   RHQ Server                     (no pid file) is ✘down
+   JBossAS Java VM child process  (no pid file) is ✘down
+   RHQ Agent                      (no pid file) is ✘down
+   ```
+
 
 ---
 [Red Hat product download]: https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=em&version=3.3&productChanged=yes
