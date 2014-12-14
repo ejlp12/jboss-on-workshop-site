@@ -164,12 +164,12 @@
     
     Masuk dengan user `rhqadmin` dan password sesuai yang anda masukan saat instalasi
 
-        ![JOB Web UI]
+        ![JON Web UI]
 
 ---
 [Red Hat product download]: https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=em&version=3.3&productChanged=yes
 [Halaman download JON]: http://1.bp.blogspot.com/-pTnPmcii27I/VIf9keceSjI/AAAAAAAADQQ/6rEbPZEBf-g/s1600/Snap%2B2014-12-10%2Bat%2B15.00.01.png
 [Halaman download Plugin JON]: http://3.bp.blogspot.com/-wmmeqm4Gfc0/VIzVGWoYksI/AAAAAAAADSc/E_0_v1vQ62Q/s1600/Snap%2B2014-12-14%2Bat%2B06.56.01.png
 [Gambar struktur direktori JON]: http://2.bp.blogspot.com/-UmesMA7mNjA/VIgDhTRe6II/AAAAAAAADQg/lCSHUYyN3Ms/s1600/Snap%2B2014-12-10%2Bat%2B15.25.22.png
-[JOB Web UI]: http://4.bp.blogspot.com/-kjSazqOR5jk/VIgIxDG87ZI/AAAAAAAADQw/jUwfpJDI30o/s1600/Snap%2B2014-12-10%2Bat%2B15.47.25.png
+[JON Web UI]: http://4.bp.blogspot.com/-kjSazqOR5jk/VIgIxDG87ZI/AAAAAAAADQw/jUwfpJDI30o/s1600/Snap%2B2014-12-10%2Bat%2B15.47.25.png
 
