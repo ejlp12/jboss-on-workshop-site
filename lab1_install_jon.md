@@ -4,7 +4,9 @@ Apa itu JON atau RHQ?
 
 Setidaknya ini yang dijelaskan diwebsite RHQ:
 
-RHQ adalah solusi Enterprise manajemen untuk aplikasi-aplikasi JBoss middleware, Tomcat, Apache Web Server, dan berbagai aplikasi server-side lainnya. RHQ menyediakan fungsi administrasi, monitoring, peringatan (alerting), pengendalian operasional (operational control) dan konfigurasi dalam pengaturan aplikasi.
+>> RHQ adalah solusi Enterprise manajemen untuk aplikasi-aplikasi JBoss middleware, Tomcat, Apache Web Server, dan berbagai
+>> aplikasi server-side lainnya. RHQ menyediakan fungsi administrasi, monitoring, peringatan (alerting), pengendalian
+>> operasional (operational control) dan konfigurasi dalam pengaturan aplikasi.
 
 Selain itu sebenarnya JON/RHQ juga dapat melakukan monitoring hardware atau OS seperti utilitas penggunaan prosesor (CPU),
 memory (RAM), storage/disk, dan lain-lain. Kita juga dapat membuat plug-in khusus untuk memonitor aplikasi lain.
