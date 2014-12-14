@@ -164,7 +164,7 @@
     
     Masuk dengan user `rhqadmin` dan password sesuai yang anda masukan saat instalasi
 
-        ![JON Web UI]
+        ![Tampilan JON Web UI][JON Web UI]
 
 ---
 [Red Hat product download]: https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=em&version=3.3&productChanged=yes
