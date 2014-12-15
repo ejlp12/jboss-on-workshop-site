@@ -117,17 +117,17 @@ Pada LAB2 ini menggunakan asumsi anda menggunakan Linux/*nix/OS-X
   
    Cobalah untuk menjalankan beberapa perintah berikut:
    
-       1. version
-       2. getconfig
-       3. avail
-       4. inventory --types
-       5. inventory
-       6. discovery
-       7. ping
-       8. metrics
-       9. ping
-       10. plugins info
-       11. plugins update
+       1. version :  melihat versi dari RHQ Agent dan JDK
+       2. getconfig :  melihat konfigurasi yang digunakan oleh RHQ Agent 
+       3. avail :  melihat laporan mengenai semua resource yang ada di host tempat Agent berjalan
+       4. inventory --types :  melihat semua jenis tipe resource (bukan tipe yang ada di inventory)
+       5. inventory :  melihat semua resource yang ada di inventory
+       6. discovery : memerintahkan plugin untuk melakukan scanning terhadap resource yang ada, tanpa melaporkan ke serber 
+       7. discovery --full :  hampir sama dengan perintah discovery tapi akan melaporkannya ke server
+       8. ping :  tes koneksi ke server
+       9. metrics : melihat metrics dari agent
+       10. plugins info :  melihat daftar semua plugins yang ada di agent
+       11. plugins update :  memerintahkan agent untuk melakukan update plugins
      
 5. Sekarang kita ceck proses yang terkait dengan JON dengan perintah `ps -Ax`
    Begini kira-kira outputnya:
@@ -194,13 +194,17 @@ Pada LAB2 ini menggunakan asumsi anda menggunakan Linux/*nix/OS-X
     java      3740 ejlp12  598u  IPv4 0xce8115777ef24943      0t0  TCP localhost:7079 (LISTEN)
     java      3832 ejlp12   59u  IPv4 0xce8115777d621943      0t0  TCP 192.168.1.101:16163 (LISTEN)
    ```
-
-  >> Catatan: Default port untuk JON/RHQ Agent adalah 16163
+   
+   Coba buat daftar port yang dibuka oleh semua komponen RHQ.
+   
+     - RHQ Storage Node: 52250, 7299, 52251, 7100, 9142
+     - RHQ Server: 7080, 6999, 3447, 6990, 2528, 2528, 7443, 4449, 4455, 7079
+     - RHQ Agent: 16163
 
    Port-port tersebut bisa kita ubah, konfigurasi port tersebut ada di file-file berikut di direktori `bin/`
   
-   `rhq-storage.properties`
-   `rhq-server.properties`
+     - `rhq-storage.properties`
+     - `rhq-server.properties`
 
    Sedangkan untuk Agent, file konfigurasi ada di `hq-agent/conf/agent-configuration.xml`
    Silakan untuk mengeksplorasi file konfigurasi tersebut.
