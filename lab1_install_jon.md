@@ -75,7 +75,10 @@ Kita akan mulai workshop ini dengan instalasi JON/RHQ.
    Java HotSpot(TM) 64-Bit Server VM (build 24.65-b04, mixed mode)
    ```
     
-5. Instal PostgreSQL
+5. Instal PostgreSQL 
+   
+   > Instal PostgreSQL harus dilakukan mesin yang sama dengan mesin yang akan diinstal JON
+
    Download PostgreSQL. Saya menggunakan PostgreSQL versi EnterpriseDB yang saya download dari sini:
 
       http://www.enterprisedb.com/products-services-training/pgdownload
@@ -135,6 +138,8 @@ Kita akan mulai workshop ini dengan instalasi JON/RHQ.
     - rhq-storage/
    ```
    
+   > **PERHATIAN:** Jika anda akan melanjutkan instalasi JON secara default maka PostgreSQL harus sudah jalan di mesin (IP address) yang sama dengan username dan password seperti yang dijelaskan diatas. Jika tidak anda perlu ubah konfigurasi file `etc/rhq-servers.properties`
+   
    Masuk ke direktori instalasi tersebut, `<JON_INSTALL_DIR>\bin` kemudian jalankan perintah
 
    Windows:
@@ -192,7 +197,7 @@ Kita akan mulai workshop ini dengan instalasi JON/RHQ.
      INFO 15:34:14,047 Heap size: 523501568/523501568
     ```
    Perintah installasi tersebut akan menginstall RHQ Storage, RHQ Server (bebasis JBoss EAP) dan RHQ Agent.
-   Direktori tempat RHQ Agent diinstall adalah di `../rhq-agent`relatif terhadap direktori instalasi RHQ, karena kita
+   Direktori tempat RHQ Agent diinstall adalah di `../rhq-agent` relatif terhadap direktori instalasi RHQ, karena kita
    direktori RHQ di `/home/jboss/jon-server-3.3.0.GA` jadi direktori RHQ Agent adalah di `/home/jboss/rhq-agent`
    
    Berikut output perintah diatas saat installasi RHQ Agent. 
@@ -226,7 +231,7 @@ Kita akan mulai workshop ini dengan instalasi JON/RHQ.
     15:35:52,801 INFO  [org.rhq.server.control.command.Install] The agent has started up
     ```
     
-7. Sekarang kita coba cek semua status komponen RHQ (Storage, Server dan Agent) dengan perintah `rhqctl status` (Linux) dari
+7. Sekarang kita coba cek semua status komponen RHQ (Storage, Server dan Agent) dengan perintah `./rhqctl.sh status` (Linux) dari
    direktori `bin/` di sebuah shell prompt/Terminal lain. Hasil perintah tersebut seharusnya terlihat seperti ini:
 
    ```
@@ -245,8 +250,8 @@ Kita akan mulai workshop ini dengan instalasi JON/RHQ.
 
    ![Halaman Login JON Web UI](http://4.bp.blogspot.com/-kjSazqOR5jk/VIgIxDG87ZI/AAAAAAAADQw/jUwfpJDI30o/s1600/Snap%2B2014-12-10%2Bat%2B15.47.25.png)
 
-9. Sekarang kita coba matikan semua komponen RHQ  dengan perintah berikut `rhqctl stop` (Linux)
-   Kemudian kita lihat status lagi dengan perintah `rhqctl status` (Linux). Jika semua komponen RHQ sudah mati, hasil
+9. Sekarang kita coba matikan semua komponen RHQ  dengan perintah berikut `./rhqctl.sh stop` (Linux)
+   Kemudian kita lihat status lagi dengan perintah `./rhqctl.sh status` (Linux). Jika semua komponen RHQ sudah mati, hasil
    perintah tersebut seharusnya seperti ini:
 
    ```
