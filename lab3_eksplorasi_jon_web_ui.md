@@ -5,6 +5,7 @@
 1. Login ke JBoss Operation Network's core GUI `http://<IP_JON_SERVER>:7080/coregui/`
 2. Tampilan awal core GUI adalah Dashbord view seperti ini:
 
+![JON Web UI images](images/jon_web_ui.png)
 
 Explore web UI untuk
 
