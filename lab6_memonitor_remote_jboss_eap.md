@@ -5,9 +5,10 @@ aplikasi yang jalan di mesin tersebut). Mesin ini, kita namakan mesin AGENTX nan
 server.
 
 > Prerequisite:
-> Yang kita butuhkan adalah sebuah mesin yang sudah menjalankan JON/RHQ Server, mesin yang sudah kita setup sebelumnya pada Lab1 sampai 
-> Lab5. Mesin ini, kita namakan JONSVR harus bisa diakses oleh  AGENTX begitu juga sebaliknya. Dapat berkomunikasi artinya  port 16163 
-> dan port 7080 untuk TCP/UDP harus tidak boleh diblok oleh firewall.
+>
+> Yang kita butuhkan adalah sebuah mesin yang sudah menjalankan JON/RHQ Server, mesin yang sudah kita setup sebelumnya pada Lab1
+> sampai Lab5. Mesin ini, kita namakan JONSVR harus bisa diakses oleh  AGENTX begitu juga sebaliknya. Dapat berkomunikasi artinya
+> port 16163 dan port 7080 untuk TCP/UDP harus tidak boleh diblok oleh firewall.
 
 Di mesin JONSVR, coba pastikan JON Server maupun JON Storage Server mati. Gunakan perintah `./rhqctl.sh status`
 
@@ -52,15 +53,11 @@ Lalu jalankan agent dengan perintah:
 
 Check di web UI yang ada di mesin JONSVR, clik "Inventory" kemudian "Discovery Queue". Pastikan ada sebuah resource name baru. 
 
-
-
-
+![](images/jon_discovery_queue_agenx.png)
 
 Pilih (check) semua resource tersebut, kemudian klik tombol [Import]
 
-
-
-
+![](jon_discovery_queue_import.png)
 
 Sekarang klik "Platform" di menu kiri.
 Seharusnya anda bisa melihat sekarang bahwa AGENTX sudah masuk dalam inventory sehingga bisa kita manage dan monitor.
