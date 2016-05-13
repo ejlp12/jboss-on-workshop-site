@@ -57,7 +57,7 @@ Check di web UI yang ada di mesin JONSVR, clik "Inventory" kemudian "Discovery Q
 
 Pilih (check) semua resource tersebut, kemudian klik tombol [Import]
 
-![](jon_discovery_queue_import.png)
+![](images/jon_discovery_queue_import.png)
 
 Sekarang klik "Platform" di menu kiri.
 Seharusnya anda bisa melihat sekarang bahwa AGENTX sudah masuk dalam inventory sehingga bisa kita manage dan monitor.
