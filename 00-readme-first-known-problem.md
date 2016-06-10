@@ -14,7 +14,7 @@ Untuk instalasi JON 3.3 di Windows:
       
 Baca juga:
   - [Kebutuhan hardware minimum](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Operations_Network/3.3/html/Installation_Guide/Hardware_Minimums.html)
-  - [Default port yang digunakan JON 3.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Operations_Network/3.3/html/Installation_Guide/sect-Preparing_for_Installation_on_nix_Systems.html#Configuring_Ports)
+  - [Default port yang digunakan JON 3.3](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Operations_Network/3.3/html/Installation_Guide/before-install-windows.html#firewall-windows)
   - [Konfigurasi hardware/software yang didukung](https://access.redhat.com/articles/112523)
 
 Untuk detail proses instalasi, silakan merujuk ke dokumentasi
