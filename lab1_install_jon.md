@@ -13,6 +13,10 @@ memory (RAM), storage/disk, dan lain-lain. Kita juga dapat membuat plug-in khusu
 
 Kita akan mulai workshop ini dengan instalasi JON/RHQ.
 
+> Sebelum memulai instalasi pastikan mesin server JON dapat me-resolve hostname semua host yang akan di-manage atau dimonitor 
+> dan juga semua host tersebut dapat me-resolve hostname dari JON server.
+> Anda bisa lakukan dengan menambahkan entry di `/etc/hosts`
+
 1. Download JBoss Operation Network (JON) dari website [Red Hat product download]. Yang akan kita gunakan pada workshop 
    ini adalah JON versi paling akhir yang ada saat ini (saat artikel ini dibuat) yaitu __versi 3.3__
    
