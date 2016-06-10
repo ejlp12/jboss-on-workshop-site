@@ -9,13 +9,15 @@
 
 2. Jalankan JBoss EAP dengan perintah `./standalone.sh`
 
-Pastikan anda telah mengubah system setting seperti tampilan dibawah ini
+Pastikan anda telah mengubah system setting (Klik menu Administration > Configuration > System Settings) seperti tampilan dibawah ini
 
 ![](images/jon_enable_experimental_features.png)
 
 
 Lalu kik tombol [Save]
 
+> Pada JON yang sudah di-patch ke versi 3.3.5, anda tidak akan bisa "Save" jika tidak mengisi variable PARTITION_EVENT_PURGE dan 
+> RESOURCE_CONFIG_HISTORY_PURGE. Masukan nilai `0` pada dua variabel tersebut.
 
 Setelah itu ekstrak file plugin installer `jon-plugin-pack-eap-3.3.0.GA.zip`, kemudian masukan ke direktori `<JON_INSTALL_DIR>/plugins/`
 
