@@ -1,8 +1,8 @@
 # LAB5: Memonitor dan mengelola JBoss AS/EAP melalui JBoss Operation Network
 
-Buka dokumentasi JON
+Buka dokumen [JON 3.3 User Guide](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Operations_Network/3.3/html/Users_Guide/index.html)
 
-Lalu navigasikan ke "Chapter 31. Managing JBoss EAP 6 (AS 7)" di halaman 452
+Lalu navigasikan ke [Chapter 32. Managing JBoss EAP 6 (AS 7)](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Operations_Network/3.3/html/Users_Guide/eap6-chapter.html) di halaman 452
 
 Baca chapter tersebut, lalu coba beberapa aktifitas berikut:
 
